@@ -2,300 +2,247 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이준영 | Embedded · AI · Backend</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color-scheme: dark light;
-    }
-    body {
-      margin: 0;
-      background: #050509;
-      color: #f5f5f7;
-    }
-    a { color: #7bd7ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 32px 16px 64px;
-    }
-    header {
-      padding: 24px 0 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 32px;
-    }
-    .title {
-      font-size: 32px;
-      font-weight: 700;
-      margin: 0 0 8px;
-    }
-    .subtitle {
-      font-size: 16px;
-      color: #9ca3af;
-      margin: 0 0 16px;
-    }
-    .tagline {
-      font-size: 14px;
-      color: #d1d5db;
-      max-width: 520px;
-      line-height: 1.5;
-    }
-    .links a {
-      display: inline-block;
-      font-size: 14px;
-      margin-right: 12px;
-      margin-top: 8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    section h2 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      border-left: 3px solid #7bd7ff;
-      padding-left: 8px;
-    }
-    .section-sub {
-      font-size: 13px;
-      color: #9ca3af;
-      margin-bottom: 16px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(0,1fr);
-      gap: 16px;
-    }
-    @media (min-width: 800px) {
-      .grid-2 {
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      }
-    }
-    .card {
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: radial-gradient(circle at top left, rgba(123,215,255,0.14), transparent 55%);
-      padding: 16px 18px 14px;
-    }
-    .card h3 {
-      font-size: 16px;
-      margin: 0 0 6px;
-    }
-    .card .meta {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-bottom: 8px;
-    }
-    .card ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-      font-size: 13px;
-      color: #e5e7eb;
-    }
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 6px;
-    }
-    .pill {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.4);
-      color: #e5e7eb;
-    }
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 13px;
-    }
-    .skills-list span {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.8);
-    }
-    footer {
-      font-size: 11px;
-      color: #6b7280;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 16px;
-      margin-top: 32px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="title">이준영</div>
-      <div class="subtitle">Embedded · AI/Data · Backend</div>
-      <p class="tagline">
-        STM32 임베디드 제어 경험을 바탕으로, AI·데이터 분석과 Django·Docker 기반
-        백엔드/시스템 개발까지 확장해 온 주니어 개발자입니다.
-        센서·장비에서 나오는 신호와 데이터를 이해하고, 이를 안정적인 제어 로직과 서비스로
-        연결하는 데 관심이 있습니다.
-      </p>
-      <div class="links">
-        <a href="mailto:youremail@example.com">Email</a>
-        <a href="https://github.com/your-github" target="_blank">GitHub</a>
-        <a href="https://www.kaggle.com/your-kaggle" target="_blank">Kaggle</a>
-      </div>
-    </header>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="nav-logo">JunYeong Lee</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-    <section id="about">
-      <h2>About</h2>
-      <p class="section-sub">
-        공업전자기기 기능경기대회에서 STM32L052K6T6 기반 임베디드 제어를 경험했고,
-        이후 Python 기반 AI·데이터 분석, Java/Spring·Django 웹 백엔드, Docker·AWS EC2
-        배포까지 학습하며 임베디드-알고리즘-시스템을 연결해 온 과정입니다.
-      </p>
+  <main class="container">
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-content fade-in-up">
+        <h1 class="hero-title">이준영</h1>
+        <div class="hero-subtitle">Embedded · AI/Data · Backend</div>
+        <p class="hero-tagline">
+          STM32 임베디드 제어 경험을 바탕으로, AI·데이터 분석과 Django·Docker 기반 백엔드/시스템 개발까지 확장해 온 주니어 개발자입니다. 센서·장비에서 나오는 신호와 데이터를 이해하고, 이를 안정적인 제어 로직과 서비스로 연결하는 데 관심이 있습니다.
+        </p>
+        <div class="hero-links">
+          <a href="mailto:jundevcodes@gmail.com" class="btn-pill">Email</a>
+          <a href="https://github.com/junDevCodes" target="_blank" class="btn-pill">GitHub</a>
+          <a href="https://www.kaggle.com/ssafyseoul18ljy" class="btn-pill">Kaggle</a>
+        </div>
+      </div>
+      <div class="hero-image-container fade-in-up delay-200">
+        <!-- Placeholder image if generation fails, otherwise replace with generated image path -->
+        <img src="assets/profile.jpg" alt="Profile" class="hero-image" onerror="this.style.display='none';this.parentElement.style.background='rgba(255,255,255,0.05)'" />
+      </div>
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p class="section-sub">
+    <!-- About Section -->
+    <section id="about" class="fade-in-up">
+      <h2 class="section-title">About</h2>
+      <div class="section-desc">
+        <p>
+          공업전자기기 기능경기대회를 준비하며 STM32L052K6T6 기반으로 산업용 세탁기와 스마트워치 과제를 수행한 것을 시작으로, 임베디드 제어를 통해 하드웨어와 가까운 소프트웨어 개발에 흥미를 가지게 되었습니다. 세탁 공정 상태머신 설계, 타이머·인터럽트 활용, 센서 이상 보호 로직 구현 등 실제 장비를 제어하는 경험을 쌓았습니다.
+        </p>
+        <p>
+          이후 Python 기반 데이터·AI 프로젝트와 Java/Spring, Django 웹 백엔드, Docker·AWS EC2 배포 경험을 쌓으면서, 센서와 장비에서 나오는 신호와 데이터를 분석하고 이를 다시 제어 로직과 서비스 구조로 연결하는 전체 흐름을 보는 개발자로 성장하고자 하고 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in-up">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-desc">
         임베디드 제어, AI·데이터 분석, 백엔드/시스템 관점에서 대표 프로젝트를 정리했습니다.
       </p>
+      
       <div class="grid grid-2">
-        <div class="card">
-          <h3>산업용 세탁기 임베디드 제어 (기능경기)</h3>
-          <div class="meta">STM32L052K6T6 · C · HAL · 2020</div>
+        <!-- P1 -->
+        <div class="card fade-in-up delay-100">
+          <h3>산업용 세탁기 임베디드 제어</h3>
+          <div class="card-meta">2020 · STM32L052K6T6 · C · HAL</div>
           <p>
-            산업용 세탁기의 급수–세탁–배수–탈수 공정을 상태머신으로 설계하고,
-            타이머·인터럽트·센서 입력을 이용해 MCU에서 직접 제어한 과제입니다.
+            산업용 세탁기의 급수–세탁–배수–탈수 공정을 상태머신으로 설계하고, 타이머·인터럽트·센서 입력을 이용해 MCU에서 직접 제어한 기능경기대회 과제입니다.
           </p>
           <ul>
-            <li>세탁 공정 단계별 상태 전이도 설계 및 구현</li>
-            <li>도어·수위 센서 이상 시 모터 정지 보호 로직 구현</li>
-            <li>센서 채터링·타이밍 이슈를 디버깅하며 하드웨어/펌웨어 통합 관점 습득</li>
+            <li>세탁 공정 단계별 상태 전이도(State Machine) 설계 및 구현</li>
+            <li>도어·수위 센서 입력을 활용한 급수/모터/펌프 제어 및 이상 시 보호 로직 구현</li>
+            <li>타이머와 인터럽트를 이용해 각 공정의 동작 시간을 관리하고 예외 상황 처리</li>
+            <li>센서 채터링·타이밍 이슈를 디버깅하며 하드웨어와 펌웨어를 함께 보는 관점 습득</li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">Embedded</span>
-            <span class="pill">State Machine</span>
-            <span class="pill">Timer/Interrupt</span>
+          <div class="tags">
+            <span class="tag">Embedded</span>
+            <span class="tag">State Machine</span>
+            <span class="tag">Timer / Interrupt</span>
           </div>
         </div>
 
-        <div class="card">
-          <h3>스마트워치 모의 시스템 (기능경기)</h3>
-          <div class="meta">STM32L052K6T6 · C · HAL · 2021</div>
+        <!-- P2 -->
+        <div class="card fade-in-up delay-200">
+          <h3>스마트워치 모의 시스템</h3>
+          <div class="card-meta">2021 · STM32L052K6T6 · C · HAL</div>
           <p>
-            시각 표시, 모드 전환, 심박 센서 인식 기능을 가진 스마트워치 모의 시스템을 구현하며
-            인터럽트 우선순위와 실시간성 이슈를 해결한 경험입니다.
+            시각 표시, 모드 전환, 심박 센서 인식 기능을 갖춘 스마트워치 모의 시스템을 구현하며 인터럽트 우선순위와 실시간성 이슈를 해결한 프로젝트입니다.
           </p>
           <ul>
-            <li>모드 전환·알람·심박 측정 등 다중 기능 상태 설계</li>
-            <li>심박 센서 오동작 문제를 타이머 인터럽트 우선순위 조정으로 해결</li>
-            <li>실시간 제어에서 자원·우선순위 관리의 중요성 체감</li>
+            <li>시계 표시, 모드 전환, 알람, 심박 측정 등 다중 기능 상태 설계</li>
+            <li>심박 센서 인식 실패 문제를 타이머 인터럽트 우선순위 조정으로 해결</li>
+            <li>여러 인터럽트 소스를 동시 관리하며 실시간 제어에서 우선순위·자원 관리의 중요성을 경험</li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">Embedded</span>
-            <span class="pill">Sensor</span>
-            <span class="pill">Real-time</span>
+          <div class="tags">
+            <span class="tag">Embedded</span>
+            <span class="tag">Sensor</span>
+            <span class="tag">Real-time</span>
           </div>
         </div>
 
-        <div class="card">
+        <!-- P3 -->
+        <div class="card fade-in-up delay-100">
           <h3>SSAFY AI Challenge – VQA</h3>
-          <div class="meta">Qwen2.5-VL · Python · AWS G5/A100 · 2025</div>
+          <div class="card-meta">2025 · Qwen2.5-VL · Python · AWS</div>
           <p>
-            이미지+텍스트 기반 VQA 대회에서 Qwen2.5-VL 모델을 활용해 베이스라인 0.76028에서
-            0.94187까지 성능을 개선한 프로젝트입니다.
+            이미지와 자연어 질문으로 구성된 VQA 대회에서 Qwen2.5-VL 기반 모델을 활용해 베이스라인 0.76028에서 0.94187까지 성능을 개선한 프로젝트입니다.
           </p>
           <ul>
-            <li>질문/정답 분포, 이미지 밝기·채도 분석 등 데이터 탐색 수행</li>
-            <li>Qwen2.5-VL 3B/7B, LoRA 파인튜닝, TTA, 밝기·채도 튜닝 실험</li>
-            <li>실험 기록·검증을 통해 성능 향상 과정 체계화</li>
+            <li>질문 유형, 정답 분포, 이미지 밝기·채도 분포 분석 등 데이터 탐색 수행</li>
+            <li>Qwen2.5-VL 3B/7B, LoRA 파인튜닝, TTA, 밝기·채도 튜닝, 학습률·배치 크기 실험</li>
+            <li>내부 검증 점수와 Kaggle 리더보드 점수를 함께 기록하며 과적합 여부 점검</li>
+            <li>실험 기록과 비교를 통해 성능 향상 과정을 체계화</li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">AI</span>
-            <span class="pill">VQA</span>
-            <span class="pill">Vision-Language</span>
+          <div class="tags">
+            <span class="tag">AI</span>
+            <span class="tag">Vision-Language</span>
+            <span class="tag">VQA</span>
           </div>
         </div>
 
-        <div class="card">
+        <!-- P4 -->
+        <div class="card fade-in-up delay-200">
           <h3>건축물 재난 피해 규모 예측</h3>
-          <div class="meta">Scikit-learn · XGBoost · 공공데이터 · 2025</div>
+          <div class="card-meta">2025 · Scikit-learn · XGBoost · 공공데이터</div>
           <p>
-            공공데이터와 Open API를 활용해 재난 발생 시 건축물 피해 규모를 예측하는 모델을
-            개발한 단기 프로젝트입니다.
+            공공데이터와 Open API를 활용해 재난 발생 시 건축물 피해 규모를 예측하는 회귀 모델을 개발한 단기 프로젝트입니다.
           </p>
           <ul>
-            <li>데이터 수집·정제 및 피처 엔지니어링</li>
-            <li>여러 모델(XGBoost, LightGBM 등) 비교 및 평가지표 분석</li>
-            <li>도메인 지식 부족이 성능에 미치는 영향 경험</li>
+            <li>여러 공공데이터 소스 수집 및 정제, 피처 엔지니어링 수행</li>
+            <li>XGBoost, LightGBM, RandomForest 등 여러 모델의 성능과 일반화 성능 비교</li>
+            <li>피해 지표 설계 과정에서 도메인 지식 부족이 모델 성능에 미치는 영향 경험</li>
+            <li>데이터 근거와 지표 설계의 중요성을 인식하고 한계점 명확히 정리</li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">ML</span>
-            <span class="pill">Public Data</span>
-            <span class="pill">Regression</span>
+          <div class="tags">
+            <span class="tag">ML</span>
+            <span class="tag">Public Data</span>
+            <span class="tag">Regression</span>
           </div>
         </div>
 
-        <div class="card">
+        <!-- P5 -->
+        <div class="card fade-in-up delay-100">
           <h3>SelF – 농산물 이커머스 플랫폼</h3>
-          <div class="meta">Django · PostgreSQL · Docker · AWS EC2 · 2025</div>
+          <div class="card-meta">2025 · Django REST · PostgreSQL · Docker</div>
           <p>
-            농산물 판매자 브랜드몰과 소비자용 통합 쇼핑몰을 제공하는 이커머스 플랫폼으로,
-            팀장으로 참여해 데이터·백엔드/DevOps를 중심으로 개발했습니다.
+            농산물 판매자 브랜드몰과 소비자용 통합 쇼핑몰을 동시에 제공하는 이커머스 플랫폼으로, 팀장으로 참여해 데이터·백엔드와 배포 구조를 중심으로 담당했습니다.
           </p>
           <ul>
-            <li>Django REST API 기반 회원·상품·주문 플로우 구현 논의 및 검증</li>
-            <li>사용자 행동 로그 설계(조회, 장바구니, 찜, 구매)</li>
-            <li>Docker·EC2·ECR·Nginx·GitHub Actions 기반 배포 파이프라인 설계</li>
+            <li>회원·상품·장바구니·주문 도메인 플로우 정의 및 API 설계 논의/검증</li>
+            <li>Django REST 기반 API 일부 구현 검증 및 디버깅, 로그 수집 구조 설계</li>
+            <li>조회, 장바구니, 찜, 구매 등 사용자 행동 로그를 설계해 추후 추천·분석에 활용 가능한 구조 준비</li>
+            <li>Docker·AWS EC2/ECR·Nginx·GitHub Actions를 활용한 배포 파이프라인 설계 및 적용</li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">Backend</span>
-            <span class="pill">DevOps</span>
-            <span class="pill">Data Logging</span>
+          <div class="tags">
+            <span class="tag">Backend</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">Data Logging</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <p class="section-sub">
-        실제 프로젝트에서 사용해 본 기술을 중심으로 정리했습니다.
-      </p>
-      <div class="skills-list">
-        <span>STM32L0 / HAL</span>
-        <span>C (임베디드 기초)</span>
-        <span>Python</span>
-        <span>NumPy / Pandas</span>
-        <span>Scikit-learn</span>
-        <span>TensorFlow / Keras (기초)</span>
-        <span>Qwen2.5-VL 활용</span>
-        <span>Django / DRF</span>
-        <span>Java / Spring Boot (기초)</span>
-        <span>Docker</span>
-        <span>AWS EC2 / ECR</span>
-        <span>Git / GitHub</span>
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in-up">
+      <h2 class="section-title">Skills</h2>
+      
+      <div class="skills-category">
+        <h3>Languages</h3>
+        <div class="skills-list">
+          <span class="skill-pill">C/C++</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java (기초)</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Embedded / MCU</h3>
+        <div class="skills-list">
+          <span class="skill-pill">STM32L052K6T6</span>
+          <span class="skill-pill">HAL Driver</span>
+          <span class="skill-pill">STM32CubeIDE</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>AI / Data</h3>
+        <div class="skills-list">
+          <span class="skill-pill">NumPy</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">Scikit-learn</span>
+          <span class="skill-pill">LightGBM</span>
+          <span class="skill-pill">XGBoost</span>
+          <span class="skill-pill">Keras / TensorFlow (기초)</span>
+          <span class="skill-pill">Hugging Face</span>
+          <span class="skill-pill">Qwen2.5-VL 활용</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Backend / Web</h3>
+        <div class="skills-list">
+          <span class="skill-pill">Django / Django REST Framework</span>
+          <span class="skill-pill">Java Spring Boot (기초)</span>
+          <span class="skill-pill">REST API</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">MySQL (기초)</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>DevOps / Infra</h3>
+        <div class="skills-list">
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">AWS EC2 / ECR</span>
+          <span class="skill-pill">Nginx</span>
+          <span class="skill-pill">Git / GitHub</span>
+        </div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p class="section-sub">
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in-up">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-desc">
         협업 및 채용 관련 연락은 이메일로 부탁드립니다.
       </p>
-      <p style="font-size:14px;">
-        Email: <a href="mailto:youremail@example.com">youremail@example.com</a><br />
-        GitHub: <a href="https://github.com/your-github" target="_blank">github.com/your-github</a>
-      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <strong>Email:</strong> <a href="mailto:jundevcodes@gmail.com">jundevcodes@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <strong>GitHub:</strong> <a href="https://github.com/junDevCodes" target="_blank">https://github.com/junDevCodes</a>
+        </div>
+      </div>
     </section>
 
     <footer>
       © 2025 이준영. All rights reserved.
     </footer>
-  </div>
+  </main>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
