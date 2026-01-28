@@ -2,79 +2,95 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection } from 'astro:content';
 
-// 1. Fetch Data from Content Collections
+// 콘텐츠 컬렉션에서 데이터 로드
 const profileEntry = await getEntry('profile', 'jylee');
 const profile = profileEntry?.data;
+const pageTitle = profile ? `${profile.name} | ${profile.title}` : '이력서';
 
 const workEntries = await getCollection('work', ({ data }) => data.visible);
-const work = workEntries.sort((a, b) => a.data.order - b.data.order).map(e => e.data);
+const work = workEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => entry.data);
 
 const educationEntries = await getCollection('education', ({ data }) => data.visible);
-const education = educationEntries.sort((a, b) => a.data.order - b.data.order).map(e => e.data);
+const education = educationEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => entry.data);
 
 const certEntries = await getCollection('certifications', ({ data }) => data.visible);
-const certs = certEntries.sort((a, b) => a.data.order - b.data.order).map(e => e.data);
+const certs = certEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => entry.data);
 
 const projectEntries = await getCollection('projects', ({ data }) => data.visible);
 const projects = await Promise.all(
-  projectEntries.sort((a, b) => a.data.order - b.data.order).map(async (entry) => {
-    const { Content } = await entry.render();
-    return { ...entry.data, Content };
-  })
+  projectEntries
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (entry) => {
+      const rendered = await entry.render();
+      return { ...entry.data, Content: rendered.Content };
+    })
 );
-
-// Format date helper (optional, if needed, but data is already strings/dates)
-const formatDate = (date) => {
-  if (!date) return '';
-  // implementation if needed, but simple string output is fine for now
-  return new Date(date).toISOString().split('T')[0]; 
-};
 ---
 
-<BaseLayout pageTitle={profile?.title ? `${profile.name} | ${profile.title}` : "이력서"}>
-  
-  <!-- 1. Profile Summary (Abstract) -->
-  <section class="section" id="abstract">
+<BaseLayout pageTitle={pageTitle}>
+  <!-- 1. 프로필 요약 -->
+  <section class="mb-16 scroll-mt-24" id="abstract">
     <h2>Abstract</h2>
-    <div class="profile-container">
-      <img src={profile?.photo || "/assets/profile.jpg"} alt={profile?.name} class="profile-img" />
-      <div class="profile-text">
-        <p class="profile-summary">
+    <div class="flex flex-col gap-4 sm:flex-row sm:gap-8 items-start">
+      <img
+        src={profile?.photo || '/assets/profile.jpg'}
+        alt={profile?.name ?? '프로필 사진'}
+        class="w-[100px] h-[125px] sm:w-[120px] sm:h-[150px] object-cover border border-border rounded-sm flex-shrink-0 grayscale"
+      />
+      <div class="flex-1">
+        <p class="mt-0 text-lg leading-relaxed whitespace-pre-line max-w-none">
           {profile?.summary}
         </p>
-        <div class="status-block">
-          <span class="status-label">Area:</span>
-          <span class="status-value">{profile?.area?.join(', ')}</span>
+        <div class="mt-4 text-sm text-muted">
+          <span class="font-semibold text-heading">Area:</span>
+          <span class="ml-2">{profile?.area?.join(', ')}</span>
         </div>
-        <div class="status-block contact-info">
-             {profile?.email && <span>📧 {profile.email}</span>}
-             {profile?.phone && <span>📞 {profile.phone}</span>}
+        <div class="mt-2 flex flex-wrap gap-4 text-sm text-muted">
+          {profile?.email && <span>📧 {profile.email}</span>}
+          {profile?.phone && <span>📞 {profile.phone}</span>}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. Work Experience -->
-  {work && work.length > 0 && (
-    <section class="section" id="work">
+  <!-- 2. 경력 -->
+  {work.length > 0 && (
+    <section class="mb-16 scroll-mt-24" id="work">
       <h2>Work Experience</h2>
-      <div class="timeline-list">
+      <div class="border-l-2 border-border pl-6 ml-2">
         {work.map((item) => (
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <h3>{item.company}</h3>
-              <span class="timeline-date text-mono">
-                {item.start_date.toISOString().split('T')[0]} ~ {item.is_current ? 'Present' : item.end_date?.toISOString().split('T')[0]}
+          <div class="relative mb-8">
+            <span
+              aria-hidden="true"
+              class="absolute -left-[1.05rem] top-2 size-3 rounded-full border-2 border-link bg-paper"
+            />
+            <div class="flex flex-wrap items-baseline justify-between gap-4">
+              <h3 class="m-0 text-lg font-bold text-heading">{item.company}</h3>
+              <span class="text-sm text-muted font-mono">
+                {item.start_date.toISOString().split('T')[0]} ~{' '}
+                {item.is_current ? 'Present' : item.end_date?.toISOString().split('T')[0]}
               </span>
             </div>
-            <div class="timeline-sub">
-                <span class="role">{item.position}</span>
-                {item.department && <span class="dept">| {item.department}</span>}
+            <div class="mt-1 text-sm text-ink">
+              <span class="font-semibold">{item.position}</span>
+              {item.department && <span class="ml-2 text-muted">| {item.department}</span>}
             </div>
-            {item.description && <p class="timeline-desc">{item.description}</p>}
+            {item.description && (
+              <p class="mt-3 text-sm text-muted whitespace-pre-line leading-relaxed max-w-none">
+                {item.description}
+              </p>
+            )}
             {item.achievements && item.achievements.length > 0 && (
-              <ul class="timeline-achievements">
-                {item.achievements.map(ach => <li>{ach}</li>)}
+              <ul class="mt-3 list-disc pl-5 space-y-1 text-sm max-w-none">
+                {item.achievements.map((ach) => (
+                  <li>{ach}</li>
+                ))}
               </ul>
             )}
           </div>
@@ -83,26 +99,36 @@ const formatDate = (date) => {
     </section>
   )}
 
-  <!-- 3. Projects -->
-  {projects && projects.length > 0 && (
-    <section class="section" id="projects">
+  <!-- 3. 프로젝트 -->
+  {projects.length > 0 && (
+    <section class="mb-16 scroll-mt-24" id="projects">
       <h2>Projects & Case Studies</h2>
       {projects.map((project) => (
-        <article class="case-study">
-          <header class="case-header">
-            <h3>{project.title}</h3>
-            <div class="case-meta-group">
-                <span class="case-category text-mono">{project.category}</span>
-                {project.github_url && <a href={project.github_url} class="case-link" target="_blank">GitHub</a>}
-                {project.demo_url && <a href={project.demo_url} class="case-link" target="_blank">Demo</a>}
+        <article class="mb-12 pb-8 border-b border-dashed border-border last:border-b-0">
+          <header class="flex flex-wrap items-baseline justify-between gap-3">
+            <h3 class="m-0 text-xl font-bold text-heading">{project.title}</h3>
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-sm font-mono text-teal">{project.category}</span>
+              {project.github_url && (
+                <a href={project.github_url} class="text-sm border-0 hover:underline" target="_blank">
+                  GitHub
+                </a>
+              )}
+              {project.demo_url && (
+                <a href={project.demo_url} class="text-sm border-0 hover:underline" target="_blank">
+                  Demo
+                </a>
+              )}
             </div>
           </header>
-          <div class="case-content">
+
+          <div class="mt-4 prose prose-slate max-w-none">
             <project.Content />
           </div>
-          <ul class="tech-tags text-mono text-small">
+
+          <ul class="mt-6 list-none p-0 m-0 flex flex-wrap gap-2 font-mono text-sm">
             {project.tech_stack?.map((tech) => (
-              <li>{tech}</li>
+              <li class="text-muted bg-code px-2 py-0.5 rounded">{tech}</li>
             ))}
           </ul>
         </article>
@@ -110,23 +136,30 @@ const formatDate = (date) => {
     </section>
   )}
 
-   <!-- 4. Education -->
-   {education && education.length > 0 && (
-    <section class="section" id="education">
+  <!-- 4. 학력 -->
+  {education.length > 0 && (
+    <section class="mb-16 scroll-mt-24" id="education">
       <h2>Education</h2>
-      <div class="timeline-list">
+      <div class="border-l-2 border-border pl-6 ml-2">
         {education.map((edu) => (
-          <div class="timeline-item">
-            <div class="timeline-header">
-              <h3>{edu.school}</h3>
-              <span class="timeline-date text-mono">
-                {edu.start_date.toISOString().split('T')[0]} ~ {edu.end_date ? edu.end_date.toISOString().split('T')[0] : 'Present'}
+          <div class="relative mb-8">
+            <span
+              aria-hidden="true"
+              class="absolute -left-[1.05rem] top-2 size-3 rounded-full border-2 border-link bg-paper"
+            />
+            <div class="flex flex-wrap items-baseline justify-between gap-4">
+              <h3 class="m-0 text-lg font-bold text-heading">{edu.school}</h3>
+              <span class="text-sm text-muted font-mono">
+                {edu.start_date.toISOString().split('T')[0]} ~{' '}
+                {edu.end_date ? edu.end_date.toISOString().split('T')[0] : 'Present'}
               </span>
             </div>
-             <div class="timeline-sub">
-                <span class="role">{edu.major}</span>
-                <span class="dept">| {edu.degree} ({edu.status})</span>
-                {edu.gpa && <span class="gpa"> (GPA: {edu.gpa})</span>}
+            <div class="mt-1 text-sm text-ink">
+              <span class="font-semibold">{edu.major}</span>
+              <span class="ml-2 text-muted">
+                | {edu.degree} ({edu.status})
+              </span>
+              {edu.gpa && <span class="ml-2 text-muted">(GPA: {edu.gpa})</span>}
             </div>
           </div>
         ))}
@@ -134,98 +167,42 @@ const formatDate = (date) => {
     </section>
   )}
 
-  <!-- 5. Certifications -->
-  {certs && certs.length > 0 && (
-    <section class="section" id="certs">
+  <!-- 5. 자격/수상 -->
+  {certs.length > 0 && (
+    <section class="mb-16 scroll-mt-24" id="certs">
       <h2>Certifications & Awards</h2>
-       <ul class="cert-list">
+      <ul class="list-none p-0 m-0 space-y-2">
         {certs.map((cert) => (
-            <li class="cert-item">
-                <span class="cert-date text-mono">{cert.date.toISOString().split('T')[0]}</span>
-                <strong class="cert-name">{cert.name}</strong>
-                <span class="cert-issuer"> - {cert.issuer}</span>
-                {cert.score && <span class="cert-score">({cert.score})</span>}
-            </li>
+          <li class="text-sm">
+            <span class="font-mono text-muted mr-3">{cert.date.toISOString().split('T')[0]}</span>
+            <strong class="text-heading">{cert.name}</strong>
+            <span class="text-ink"> - {cert.issuer}</span>
+            {cert.score && <span class="text-muted ml-2">({cert.score})</span>}
+          </li>
         ))}
-       </ul>
+      </ul>
     </section>
   )}
 
-  <!-- 6. Technical Stack -->
-  <section class="section" id="stack">
+  <!-- 6. 기술 스택 -->
+  <section class="mb-16 scroll-mt-24" id="stack">
     <h2>Technical Stack</h2>
     <table>
       <tbody>
         <tr>
           <th>Embedded</th>
-          <td class="text-mono">C, C++, STM32, HAL, FreeRTOS, UART/I2C/SPI</td>
+          <td class="font-mono">C, C++, STM32, HAL, FreeRTOS, UART/I2C/SPI</td>
         </tr>
         <tr>
           <th>AI & Data</th>
-          <td class="text-mono">Python, PyTorch, TensorFlow, OpenCV, LLM (RAG/LoRA)</td>
+          <td class="font-mono">Python, PyTorch, TensorFlow, OpenCV, LLM (RAG/LoRA)</td>
         </tr>
         <tr>
           <th>Backend</th>
-          <td class="text-mono">Django, Docker, PostgreSQL, AWS EC2, Git</td>
+          <td class="font-mono">Django, Docker, PostgreSQL, AWS EC2, Git</td>
         </tr>
       </tbody>
     </table>
   </section>
 </BaseLayout>
 
-<style>
-  /* Use existing styles + new timeline styles */
-  .profile-container { display: flex; gap: 2rem; align-items: flex-start; }
-  .profile-img { width: 120px; height: 150px; object-fit: cover; border: 1px solid var(--c-border); border-radius: 2px; flex-shrink: 0; filter: grayscale(100%); }
-  .profile-summary { font-size: 1.1rem; line-height: 1.8; margin-top: 0; white-space: pre-line; }
-  
-  @media (max-width: 600px) {
-    .profile-container { flex-direction: column; gap: 1rem; }
-    .profile-img { width: 100px; height: 125px; }
-  }
-  
-  .status-block { margin-top: 1rem; font-size: 0.9rem; color: var(--c-ink-light); }
-  .status-label { font-weight: 600; color: var(--c-navy); }
-  .contact-info { margin-top: 0.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  /* Timeline Styles (Work & Edu) */
-  .timeline-list { border-left: 2px solid var(--c-border); padding-left: 1.5rem; margin-left: 0.5rem; }
-  .timeline-item { margin-bottom: 2rem; position: relative; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -1.85rem; top: 0.4rem;
-    width: 0.7rem; height: 0.7rem; background: var(--c-paper); border: 2px solid var(--c-blue); border-radius: 50%;
-  }
-  .timeline-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; }
-  .timeline-header h3 { margin: 0; font-size: 1.1rem; color: var(--c-navy); }
-  .timeline-date { font-size: 0.85rem; color: var(--c-ink-light); }
-  .timeline-sub { font-size: 0.95rem; color: var(--c-ink); margin-bottom: 0.5rem; }
-  .role { font-weight: 600; }
-  .timeline-desc { font-size: 0.95rem; color: var(--c-ink-light); line-height: 1.6; white-space: pre-line; }
-  .timeline-achievements { margin-top: 0.5rem; padding-left: 1.2rem; }
-  .timeline-achievements li { font-size: 0.9rem; color: var(--c-ink); margin-bottom: 0.3rem; }
-
-  /* Cert Styles */
-  .cert-list { list-style: none; padding: 0; }
-  .cert-item { margin-bottom: 0.5rem; font-size: 0.95rem; }
-  .cert-date { color: var(--c-ink-light); margin-right: 0.8rem; font-size: 0.9rem; }
-  .cert-name { color: var(--c-navy); }
-
-  /* Case Study Styles (Projects) */
-  .case-study { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px dashed var(--c-border); }
-  .case-study:last-child { border-bottom: none; }
-  .case-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-  .case-header h3 { margin: 0; font-size: 1.25rem; }
-  .case-meta-group { display: flex; gap: 1rem; align-items: center; }
-  .case-category { font-size: 0.85rem; color: var(--c-teal); }
-  .case-link { font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid; }
-
-  /* Markdown Content Styles */
-  .case-content :global(p) { margin-bottom: 1rem; color: var(--c-ink); line-height: 1.7; }
-  .case-content :global(ul) { padding-left: 1.5rem; margin-bottom: 1rem; }
-  .case-content :global(li) { margin-bottom: 0.4rem; list-style-type: disc; }
-  .case-content :global(h1), .case-content :global(h2), .case-content :global(h3) { margin-top: 1.5rem; margin-bottom: 0.8rem; font-size: 1.1rem; font-weight: 600; }
-  .case-content :global(strong) { font-weight: 700; color: var(--c-navy); }
-  
-  .tech-tags { list-style: none; padding: 0; margin: 0; display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem; }
-  .tech-tags li { color: var(--c-ink-light); background: var(--c-code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; }
-</style>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects', ({ data }) => data.visible);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as Props;
+const rendered = await entry.render();
+const Content = rendered.Content;
+---
+
+<BaseLayout pageTitle={`Projects | ${entry.data.title}`}>
+  <header class="mb-10">
+    <h1 class="mt-0">{entry.data.title}</h1>
+    <div class="mt-3 flex flex-wrap items-center gap-4 text-sm text-muted">
+      <span class="font-mono">{entry.data.category}</span>
+      {entry.data.github_url && (
+        <a href={entry.data.github_url} class="border-0 hover:underline" target="_blank">GitHub</a>
+      )}
+      {entry.data.demo_url && (
+        <a href={entry.data.demo_url} class="border-0 hover:underline" target="_blank">Demo</a>
+      )}
+    </div>
+    <ul class="mt-4 list-none p-0 m-0 flex flex-wrap gap-2 font-mono text-sm">
+      {entry.data.tech_stack?.map((tech) => (
+        <li class="text-muted bg-code px-2 py-0.5 rounded">{tech}</li>
+      ))}
+    </ul>
+  </header>
+
+  <!-- MDX 본문은 prose로 스타일링 -->
+  <article class="prose prose-slate max-w-none">
+    <Content />
+  </article>
+</BaseLayout>
+
