@@ -1,6 +1,8 @@
 import type {
+  BlogData as BlogDataFromSchema,
   CertificationData as CertificationDataFromSchema,
   EducationData as EducationDataFromSchema,
+  KnowledgeData as KnowledgeDataFromSchema,
   ProfileData as ProfileDataFromSchema,
   ProjectData as ProjectDataFromSchema,
   WorkData as WorkDataFromSchema,
@@ -11,6 +13,8 @@ import type {
 
 export interface ProfileData extends ProfileDataFromSchema {}
 export interface ProjectData extends ProjectDataFromSchema {}
+export interface KnowledgeData extends KnowledgeDataFromSchema {}
+export interface BlogData extends BlogDataFromSchema {}
 export interface WorkData extends WorkDataFromSchema {}
 export interface EducationData extends EducationDataFromSchema {}
 export interface CertificationData extends CertificationDataFromSchema {}

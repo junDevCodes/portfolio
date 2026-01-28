@@ -1,11 +1,32 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
+import { jsx } from 'react/jsx-runtime';
 
 export default config({
   storage: {
     kind: 'local',
   },
+  ui: {
+    brand: {
+      name: 'Keystatic',
+      // Keystatic 상단 브랜드 영역에 홈 이동 링크를 제공
+      // - mark는 ReactNode를 반환할 수 있으므로 JSX 없이 jsx-runtime을 사용
+      mark: () =>
+        jsx('a', {
+          href: '/',
+          'aria-label': '홈으로 이동',
+          style: {
+            display: 'flex',
+            alignItems: 'center',
+            height: 24,
+            fontWeight: 700,
+            textDecoration: 'none',
+          },
+          children: 'Home',
+        }),
+    },
+  },
   collections: {
-    // 1. Projects (Updated Schema)
+    // 1. Projects
     projects: collection({
       label: 'Projects',
       slugField: 'title',
@@ -17,7 +38,10 @@ export default config({
           label: 'Category',
           options: [
             { label: 'AI / Data Science', value: 'AI Research' },
+            // 핫픽스: 기존 MDX 데이터의 category 값과 스키마를 일치시킴
+            { label: 'Data Science', value: 'Data Science' },
             { label: 'Embedded System', value: 'Embedded System' },
+            { label: 'Embedded / IoT', value: 'Embedded / IoT' },
             { label: 'Web Development', value: 'Web Development' },
             { label: 'Mobile App', value: 'Mobile App' },
             { label: 'Other', value: 'Other' },
@@ -28,22 +52,24 @@ export default config({
         team_size: fields.integer({ label: 'Team Size' }),
         start_date: fields.date({ label: 'Start Date' }),
         end_date: fields.date({ label: 'End Date' }),
-        tech_stack: fields.array(
+        // 신규 관계 필드(Phase 2): Knowledge 컬렉션을 참조
+        techs: fields.array(
           fields.relationship({
-            label: 'Tech Stack',
-            collection: 'techStack',
+            label: 'Tech (Knowledge Ref)',
+            collection: 'knowledge',
           }),
           {
-            label: 'Tech Stack',
-            itemLabel: (props) => props.value || 'Select Tech',
+            label: 'Techs',
+            itemLabel: (props) => props.value || 'Select Knowledge',
           }
         ),
+        // 레거시 필드(점진 이행): 기존 문자열 배열을 임시 유지
+        tech_stack: fields.array(fields.text({ label: 'Legacy Tech' }), {
+          label: 'Legacy Tech Stack',
+          itemLabel: (props) => props.value,
+        }),
         description: fields.mdx({
           label: 'Description (MDX)',
-          options: {
-            imageDirectory: 'src/assets/images/projects',
-            publicPath: '/assets/images/projects/',
-          },
         }),
         github_url: fields.url({ label: 'GitHub URL' }),
         demo_url: fields.url({ label: 'Demo URL' }),
@@ -52,31 +78,63 @@ export default config({
       },
     }),
 
-    // 2. Tech Stacks (New - for reference)
-    techStack: collection({
-      label: 'Tech Stacks',
+    // 2. Knowledge (NEW)
+    knowledge: collection({
+      label: 'Knowledge',
       slugField: 'name',
-      path: 'src/content/tech-stack/*',
-      format: { data: 'json' },
+      path: 'src/content/knowledge/*',
+      format: { contentField: 'content' },
       schema: {
-        name: fields.slug({ name: { label: 'Name' } }),
+        name: fields.slug({ name: { label: 'ID (Slug)' } }),
+        display_name: fields.text({ label: 'Display Name' }),
         category: fields.select({
           label: 'Category',
           options: [
-            { label: 'Frontend', value: 'Frontend' },
-            { label: 'Backend', value: 'Backend' },
-            { label: 'Embedded', value: 'Embedded' },
-            { label: 'AI / ML', value: 'AI/ML' },
-            { label: 'DevOps', value: 'DevOps' },
-            { label: 'Tools', value: 'Tools' },
+            { label: 'CS', value: 'cs' },
+            { label: 'Language', value: 'language' },
+            { label: 'Framework', value: 'framework' },
+            { label: 'Library', value: 'library' },
+            { label: 'Tooling', value: 'tooling' },
+            { label: 'Platform', value: 'platform' },
+            { label: 'Database', value: 'database' },
           ],
-          defaultValue: 'Frontend',
+          defaultValue: 'cs',
         }),
-        icon_url: fields.text({ label: 'Icon URL (Optional)' }),
+        summary: fields.text({
+          label: 'Summary',
+          multiline: true,
+        }),
+        // 추가 요청: UI 시각화를 위한 아이콘 경로/URL
+        icon: fields.text({
+          label: 'Icon (Path or URL)',
+          description: '기술 뱃지/아이콘 표시용 경로 또는 URL',
+        }),
+        aliases: fields.array(fields.text({ label: 'Alias' }), {
+          label: 'Aliases',
+          itemLabel: (props) => props.value,
+        }),
+        tags: fields.array(fields.text({ label: 'Tag' }), {
+          label: 'Tags',
+          itemLabel: (props) => props.value,
+        }),
+        related: fields.array(
+          fields.relationship({
+            label: 'Related Knowledge',
+            collection: 'knowledge',
+          }),
+          {
+            label: 'Related',
+            itemLabel: (props) => props.value || 'Select Knowledge',
+          }
+        ),
+        url: fields.url({ label: 'Reference URL' }),
+        content: fields.mdx({
+          label: 'Content (MDX)',
+        }),
       },
     }),
 
-    // 3. Concept Notes (New - for AI Graph RAG)
+    // 3. Concept Notes (AI 그래프/RAG 확장용)
     conceptNotes: collection({
       label: 'Concept Notes (Graph)',
       slugField: 'topic',
@@ -91,30 +149,26 @@ export default config({
           }),
           {
             label: 'Related Concepts (Graph Edges)',
-            description: 'AI will populate this field automatically in the future.',
+            description: '향후 AI가 자동으로 채우는 필드로 확장 예정',
             itemLabel: (props) => props.value || 'Select Concept',
           }
         ),
         ai_explanation: fields.text({
           label: 'AI Explanation (Definition)',
           multiline: true,
-          description: 'Auto-generated definition by Gemini.',
+          description: '향후 Gemini 기반 자동 생성 정의로 확장 예정',
         }),
         content: fields.mdx({
           label: 'My Notes',
-          options: {
-            imageDirectory: 'src/assets/images/concepts',
-            publicPath: '/assets/images/concepts/',
-          },
         }),
-        visual_graph: fields.json({
+        visual_graph: fields.text({
           label: 'Graph Data (JSON)',
-          description: 'Internal use for visualization',
+          description: '시각화용 내부 데이터',
         }),
       },
     }),
 
-    // 4. Blog (New)
+    // 4. Blog
     blog: collection({
       label: 'Blog',
       slugField: 'title',
@@ -126,10 +180,6 @@ export default config({
         tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tags' }),
         content: fields.mdx({
           label: 'Content',
-          options: {
-            imageDirectory: 'src/assets/images/blog',
-            publicPath: '/assets/images/blog/',
-          },
         }),
       },
     }),

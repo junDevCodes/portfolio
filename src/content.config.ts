@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 
 // Astro Content Collection 스키마 (Zod)
 // - Strict TS의 “단일 진실 공급원”으로 사용
@@ -16,11 +16,40 @@ const projectSchema = z.object({
     .or(z.date())
     .optional()
     .transform((val) => (val ? new Date(val) : undefined)),
-  tech_stack: z.array(z.string()),
+  // 점진 이행(Phase 2): 문자열 배열에서 Knowledge reference로 마이그레이션
+  // - techs: 신규 관계 필드(권장)
+  // - tech_stack: 레거시 필드(임시 유지)
+  techs: z.array(reference('knowledge')).default([]),
+  tech_stack: z.array(z.string()).optional(),
   github_url: z.string().url().optional(),
   demo_url: z.string().url().optional(),
   order: z.number().default(0),
   visible: z.boolean().default(true),
+});
+
+const knowledgeSchema = z.object({
+  name: z.string(),
+  display_name: z.string(),
+  category: z.enum([
+    'cs',
+    'language',
+    'framework',
+    'library',
+    'tooling',
+    'platform',
+    'database',
+  ]),
+  summary: z.string(),
+  icon: z.string().optional(),
+  aliases: z.array(z.string()).optional(),
+  tags: z.array(z.string()).optional(),
+});
+
+const blogSchema = z.object({
+  title: z.string(),
+  date: z.string().or(z.date()).transform((val) => new Date(val)),
+  tags: z.array(z.string()).optional(),
+  summary: z.string().optional(),
 });
 
 const workSchema = z.object({
@@ -77,6 +106,8 @@ const profileSchema = z.object({
 });
 
 export type ProjectData = z.infer<typeof projectSchema>;
+export type KnowledgeData = z.infer<typeof knowledgeSchema>;
+export type BlogData = z.infer<typeof blogSchema>;
 export type WorkData = z.infer<typeof workSchema>;
 export type EducationData = z.infer<typeof educationSchema>;
 export type CertificationData = z.infer<typeof certificationsSchema>;
@@ -85,6 +116,16 @@ export type ProfileData = z.infer<typeof profileSchema>;
 const projects = defineCollection({
   type: 'content',
   schema: projectSchema,
+});
+
+const knowledge = defineCollection({
+  type: 'content',
+  schema: knowledgeSchema,
+});
+
+const blog = defineCollection({
+  type: 'content',
+  schema: blogSchema,
 });
 
 const work = defineCollection({
@@ -109,6 +150,8 @@ const profile = defineCollection({
 
 export const collections = {
   projects,
+  knowledge,
+  blog,
   work,
   education,
   certifications,
