@@ -1,53 +1,158 @@
-# Portfolio v2 (Astro)
+# Dev OS# Portfolio v2 (Next.js)
 
-This project is a modern, static portfolio website built with **Astro**.
-It includes a public resume page and a private "Hub" for content management, powered by AI.
+A modern, full-stack portfolio website built with **Next.js 16**, **Prisma**, and **PostgreSQL**.  
+Features a public portfolio page and a private admin hub for content management.
 
-## 🚀 Features
+## 🚀 Tech Stack
 
-- **Public Resume**: Single-page resume with Tabs (About, Projects, Skills) and Modals.
-- **Admin Hub**: Dashboard for managing TILs, Knowledge Base, and Bookmarks.
-- **AI Knowledge Base**:
-  - Auto-generated definitions and tags using **Gemini API**.
-  - Auto-linking of related concepts based on shared tags.
-- **Static & Fast**: Built with Astro + Cloudflare Pages.
+- **Framework**: Next.js 16 (App Router)
+- **Database**: PostgreSQL (Neon)
+- **ORM**: Prisma
+- **Authentication**: Auth.js (NextAuth v5)
+- **Styling**: Tailwind CSS 4
+- **Deployment**: Vercel
+- **Language**: TypeScript
 
-## 🛠️ Setup
+## 🛠️ Setup Instructions
 
-### 1. Install Dependencies
+### 1. Clone and Install
+
 ```bash
+git clone <repository-url>
+cd portfolio
 npm install
 ```
 
-### 2. Development
+### 2. Environment Variables
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Then configure the following variables in `.env`:
+
+#### **Database** (Required)
+- `DATABASE_URL`: Pooled connection string from Neon (for API routes)
+- `DATABASE_URL_UNPOOLED`: Direct connection string (for migrations)
+
+#### **Authentication** (Required)
+- `AUTH_SECRET`: Generate with `openssl rand -base64 32`
+- `AUTH_TRUST_HOST`: Set to `true`
+- `OWNER_EMAIL`: Your email for admin access
+
+#### **OAuth** (Optional - for GitHub login)
+- `AUTH_GITHUB_ID`: GitHub OAuth App Client ID
+- `AUTH_GITHUB_SECRET`: GitHub OAuth App Client Secret
+
+#### **Application**
+- `NEXT_PUBLIC_SITE_URL`: Your site URL (localhost:3000 for dev)
+
+### 3. Database Setup
+
+```bash
+# Run migrations
+npm run db:migrate:dev
+
+# (Optional) Open Prisma Studio to view/edit data
+npm run db:studio
+```
+
+### 4. Development
+
 ```bash
 npm run dev
 ```
 
-### 3. Build
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+### 5. Build
+
 ```bash
 npm run build
+npm start
 ```
 
-## 🤖 AI Features Configuration (Gemini API)
+## 📂 Project Structure
 
-To use the AI analysis feature in the Hub, you need a Gemini API Key.
-
-### Local Development
-Create a `.env` file or pass the variable:
-```bash
-# Windows PowerShell
-$env:GEMINI_API_KEY="your-api-key"
-npm run dev
 ```
-*Note: In local dev, Astro might need special proxy config for Cloudflare functions depending on your environment.*
+portfolio/
+├── prisma/
+│   └── schema.prisma          # Database schema
+├── src/
+│   ├── app/
+│   │   ├── (public)/          # Public routes
+│   │   └── (private)/         # Protected admin routes
+│   ├── components/            # Reusable components
+│   └── lib/                   # Utilities and configurations
+├── docs/                      # Project documentation
+├── .env.example               # Environment variable template
+└── vercel.json                # Vercel deployment config
+```
 
-### Deployment (Cloudflare Pages)
-1. Go to Cloudflare Dashboard > Pages > Your Project > Settings > Environment variables.
-2. Add `GEMINI_API_KEY` with your key.
+## 🚢 Deployment (Vercel)
 
-## 📂 Structure
-- `src/pages/`: Page routes (`/`, `/hub`, etc.)
-- `src/components/`: Reusable components
-- `src/content/`: Markdown content (Blog, Knowledge)
-- `functions/api/`: Cloudflare Functions (Serverless backend)
+### Initial Setup
+
+1. **Create Vercel Project**
+   - Connect your GitHub repository
+   - Framework Preset: Next.js
+   - Root Directory: `.`
+
+2. **Configure Environment Variables**
+   - Add all variables from `.env.example`
+   - Set for both **Production** and **Preview** environments
+
+3. **Deploy**
+   - Push to `main` branch → Production deployment
+   - Create PR → Preview deployment
+
+### Automatic Deployments
+
+- **PR Created** → Vercel deploys preview with URL comment on PR
+- **Merged to main** → Vercel deploys to production
+- **Migrations** → Automatically run via `vercel-build` script
+
+### Database Migration Strategy
+
+- **Development**: `npm run db:migrate:dev`
+- **Preview/Production**: Automatic via `prisma migrate deploy` in `vercel-build`
+
+## 🗃️ Database Schema
+
+The application uses the following main models:
+
+- `Portfolio`: Main portfolio information
+- `Project`: Portfolio projects
+- `Skill`: Skills with categories and proficiency levels
+- `Experience`: Work experience
+- `Education`: Educational background
+- `User`, `Account`, `Session`: Auth.js authentication tables
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run db:migrate:dev` - Run Prisma migrations (dev)
+- `npm run db:migrate:deploy` - Run Prisma migrations (production)
+- `npm run db:push` - Push schema changes without migration
+- `npm run db:studio` - Open Prisma Studio
+- `npm run db:seed` - Seed database (if configured)
+
+## 🔐 Authentication
+
+The app uses Auth.js (NextAuth v5) with:
+- GitHub OAuth provider
+- Owner-based access control via `OWNER_EMAIL`
+
+## 📖 Documentation
+
+See the `docs/` directory for detailed planning and design documents.
+
+---
+
+**Version**: 2.0.0  
+**Last Updated**: 2026-02-04t
