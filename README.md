@@ -8,7 +8,7 @@ Features a public portfolio page and a private admin hub for content management.
 - **Framework**: Next.js 16 (App Router)
 - **Database**: PostgreSQL (Neon)
 - **ORM**: Prisma
-- **Authentication**: Auth.js (NextAuth v5)
+- **Authentication**: Auth.js (NextAuth v4)
 - **Styling**: Tailwind CSS 4
 - **Deployment**: Vercel
 - **Language**: TypeScript
@@ -136,6 +136,7 @@ The application uses the following main models:
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npm run test` - Run Jest tests
 - `npm run db:migrate:dev` - Run Prisma migrations (dev)
 - `npm run db:migrate:deploy` - Run Prisma migrations (production)
 - `npm run db:push` - Push schema changes without migration
@@ -144,7 +145,7 @@ The application uses the following main models:
 
 ## 🔐 Authentication
 
-The app uses Auth.js (NextAuth v5) with:
+The app uses Auth.js (NextAuth v4) with:
 - GitHub OAuth provider
 - Owner-based access control via `OWNER_EMAIL`
 

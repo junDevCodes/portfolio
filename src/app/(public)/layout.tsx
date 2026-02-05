@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev OS — Portfolio",
-  description: "Public portfolio with private owner dashboard.",
+  title: "Dev OS — 포트폴리오",
+  description: "공개 포트폴리오와 오너 전용 대시보드를 분리한 프로젝트입니다.",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

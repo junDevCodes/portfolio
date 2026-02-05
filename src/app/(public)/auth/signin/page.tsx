@@ -6,9 +6,9 @@ import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
 const ERROR_MESSAGES: Record<string, string> = {
-  unauthorized: "You must sign in to access the owner dashboard.",
-  owner: "This account is not authorized as the owner.",
-  AccessDenied: "Access denied. Please use the owner account.",
+  unauthorized: "오너 대시보드에 접근하려면 로그인해야 합니다.",
+  owner: "이 계정은 오너로 승인되지 않았습니다.",
+  AccessDenied: "접근이 거부되었습니다. 오너 계정으로 로그인하세요.",
 };
 
 function SignInContent() {
@@ -32,13 +32,13 @@ function SignInContent() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-white/60">Dev OS</p>
-              <h1 className="text-2xl font-semibold">Owner Sign In</h1>
+              <h1 className="text-2xl font-semibold">오너 로그인</h1>
             </div>
           </div>
 
           <p className="mt-4 text-sm leading-6 text-white/70">
-            Access to the private dashboard is restricted. Sign in with the owner account
-            configured in Auth.js and the database.
+            비공개 대시보드는 오너 계정만 접근할 수 있습니다. Auth.js와 데이터베이스에
+            등록된 오너 계정으로 로그인해주세요.
           </p>
 
           {message ? (
@@ -49,16 +49,20 @@ function SignInContent() {
 
           <button
             type="button"
-            onClick={() => signIn("github", { callbackUrl: "/app" })}
+            onClick={() => {
+              const next = searchParams.get("next");
+              const callbackUrl = next && next.startsWith("/") ? next : "/app";
+              signIn("github", { callbackUrl });
+            }}
             className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
-            Sign in with GitHub
+            GitHub로 로그인
           </button>
 
           <div className="mt-6 border-t border-white/10 pt-4 text-xs text-white/50">
-            Need access? Ask the team lead to grant owner permission or set the OWNER_EMAIL
-            allowlist.
+            접근 권한이 필요하신가요? 팀장에게 오너 권한을 요청하거나 OWNER_EMAIL
+            허용 목록을 설정해주세요.
           </div>
         </div>
       </main>

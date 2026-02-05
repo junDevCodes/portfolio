@@ -10,12 +10,12 @@ export default function Home() {
       <main className="relative mx-auto flex min-h-screen w-full max-w-5xl flex-col px-6 py-20">
         <p className="text-xs uppercase tracking-[0.3em] text-black/50">Dev OS</p>
         <h1 className="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
-          Public portfolio, private command center.
+          공개 포트폴리오와 비공개 커맨드 센터.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-black/60">
-          A unified workspace for curated public work and the private workflows that power it.
-          This foundation focuses on architecture, authentication, and a clean boundary between
-          public and owner-only features.
+          공개 작업은 간결하게 보여주고, 오너 전용 워크플로는 안전하게 운영하는 통합
+          공간입니다. 이 기반은 아키텍처, 인증, 그리고 공개/비공개 경계를 명확히
+          구분하는 데 집중합니다.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -23,29 +23,29 @@ export default function Home() {
             className="rounded-full bg-black px-5 py-3 text-sm font-semibold text-white transition hover:bg-black/90"
             href="/projects"
           >
-            View projects
+            프로젝트 보기
           </a>
           <a
             className="rounded-full border border-black/20 px-5 py-3 text-sm font-semibold text-black transition hover:border-black/40"
             href="/auth/signin"
           >
-            Owner sign in
+            오너 로그인
           </a>
         </div>
 
         <section className="mt-14 grid gap-6 md:grid-cols-3">
           {[
             {
-              title: "Public",
-              body: "Fast ISR-backed pages for portfolio and project details.",
+              title: "공개",
+              body: "포트폴리오와 프로젝트 상세를 빠르게 제공하는 ISR 페이지.",
             },
             {
-              title: "Private",
-              body: "Owner-only dashboard secured by Auth.js + middleware.",
+              title: "비공개",
+              body: "Auth.js와 미들웨어로 보호되는 오너 전용 대시보드.",
             },
             {
-              title: "Data",
-              body: "PostgreSQL + Prisma with pooled connections for serverless stability.",
+              title: "데이터",
+              body: "서버리스 환경을 고려한 PostgreSQL + Prisma 풀링 연결.",
             },
           ].map((card) => (
             <div

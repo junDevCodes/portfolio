@@ -10,7 +10,7 @@ const globalForPrisma = globalThis as unknown as {
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
   throw new Error(
-    "DATABASE_URL environment variable is not set. Please check your Vercel environment variables."
+    "DATABASE_URL 환경변수가 설정되지 않았습니다. Vercel 환경변수를 확인해주세요."
   );
 }
 

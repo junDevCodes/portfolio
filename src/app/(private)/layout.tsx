@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev OS — Owner",
-  description: "Private owner dashboard for Dev OS.",
+  title: "Dev OS — 오너",
+  description: "Dev OS 오너 전용 대시보드입니다.",
 };
 
 export default function PrivateLayout({
@@ -23,7 +23,7 @@ export default function PrivateLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-[#0c0f14] text-white antialiased`}
       >
