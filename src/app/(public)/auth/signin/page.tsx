@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
@@ -10,7 +11,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   AccessDenied: "Access denied. Please use the owner account.",
 };
 
-export default function SignInPage() {
+function SignInContent() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error") ?? "";
   const message = ERROR_MESSAGES[error];
@@ -62,5 +63,13 @@ export default function SignInPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0b0b10]" />}>
+      <SignInContent />
+    </Suspense>
   );
 }

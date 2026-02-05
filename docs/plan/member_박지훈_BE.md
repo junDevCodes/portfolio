@@ -32,42 +32,42 @@
 ### Task별 체크리스트
 
 #### ✅ Task 1: Prisma 스키마
-- [ ] `prisma/schema.prisma` 파일 생성
-- [ ] User 모델 작성 (id, email, name, isOwner)
-- [ ] Account 모델 작성 (Auth.js용)
-- [ ] Session 모델 작성 (Auth.js용)
-- [ ] VerificationToken 모델 작성
-- [ ] 관계 설정 (User ↔ Account, Session)
-- [ ] 인덱스 설정 (email unique, session token)
+- [x] `prisma/schema.prisma` 파일 생성
+- [x] User 모델 작성 (id, email, name, isOwner)
+- [x] Account 모델 작성 (Auth.js용)
+- [x] Session 모델 작성 (Auth.js용)
+- [x] VerificationToken 모델 작성
+- [x] 관계 설정 (User ↔ Account, Session)
+- [x] 인덱스 설정 (email unique, session token)
 - [ ] `npx prisma migrate dev --name init` 실행
 - [ ] 마이그레이션 파일 확인
 - [ ] 김민준(TL)과 스키마 리뷰
 
 #### ✅ Task 2: Prisma 클라이언트
-- [ ] `lib/prisma.ts` 파일 생성
-- [ ] PrismaClient 싱글톤 패턴 구현
-- [ ] 서버리스 커넥션 풀링 설정
-- [ ] 개발/프로덕션 환경 분리
-- [ ] 쿼리 로깅 설정 (개발 환경)
+- [x] `lib/prisma.ts` 파일 생성
+- [x] PrismaClient 싱글톤 패턴 구현
+- [x] 서버리스 커넥션 풀링 설정
+- [x] 개발/프로덕션 환경 분리
+- [x] 쿼리 로깅 설정 (개발 환경)
 - [ ] `npx prisma generate` 실행
 - [ ] 테스트 쿼리 실행 (User.findMany())
 - [ ] 정하은(DevOps)과 DB 연결 확인
 
 #### ✅ Task 3: Seed 스크립트
-- [ ] `prisma/seed.ts` 파일 생성
-- [ ] 오너 User 1명 생성 로직
-- [ ] `package.json`에 seed 스크립트 추가
+- [x] `prisma/seed.ts` 파일 생성
+- [x] 오너 User 1명 생성 로직
+- [x] `package.json`에 seed 스크립트 추가
 - [ ] `npm run seed` 실행
 - [ ] DB에서 오너 계정 확인
 - [ ] Seed 데이터 문서화
 
 #### ✅ Task 4: API 가드
-- [ ] `lib/auth-guard.ts` 파일 생성
-- [ ] `getServerSession` 유틸 함수 작성
-- [ ] `requireAuth` 미들웨어 함수 작성
-- [ ] `requireOwner` 미들웨어 함수 작성
-- [ ] 401/403 에러 응답 표준화
-- [ ] 테스트 API 엔드포인트 작성
+- [x] `lib/auth-guard.ts` 파일 생성
+- [x] `getServerSession` 유틸 함수 작성
+- [x] `requireAuth` 미들웨어 함수 작성
+- [x] `requireOwner` 미들웨어 함수 작성
+- [x] 401/403 에러 응답 표준화
+- [x] 테스트 API 엔드포인트 작성
 - [ ] 비인증 호출 → 401 확인
 - [ ] 비오너 호출 → 403 확인
 
