@@ -27,11 +27,11 @@
 ## 🗄️ 데이터베이스 & ORM
 
 ### Prisma
-- **Prisma Client**: `^5.23.0` (5.x latest stable)
-- **Prisma CLI**: `^5.23.0` (devDependencies)
+- **Prisma Client**: `^7.3.0`
+- **Prisma CLI**: `^7.3.0` (devDependencies)
 - **이유**: PostgreSQL 완벽 지원, Next.js 서버리스 환경 최적화
 - **주요 기능**: Type-safe queries, Migration, Prisma Studio
-- **참고**: Prisma 6/7은 실험 단계, Production에서는 5.x 사용
+- **참고**: 현재 레포 버전에 맞춰 7.x 사용
 
 ### PostgreSQL
 - **추천 버전**: PostgreSQL 15.x 또는 16.x
@@ -47,7 +47,7 @@
 
 ### NextAuth.js
 - **next-auth**: `^4.24.13` (v4 stable)
-- **@prisma/adapter**: `^2.11.1` (v4용)
+- **@auth/prisma-adapter**: `^2.11.1` (v4용)
 - **이유**: 검증된 안정 버전, Next.js 13+ App Router 지원
 - **주요 기능**: Prisma Adapter, Session 관리, 오너 전용 인증
 - **참고**: v5는 beta 상태로 production 사용 보류
@@ -131,7 +131,7 @@
 |--------|------|-----------|----------|---------|--------------|
 | next | 16.1.6 | ✅ | ✅ | ✅ | ✅ |
 | react | 19.2.3 | ✅ | ✅ | ✅ | ✅ |
-| prisma | ^5.23.0 | ✅ | ✅ | ✅ | ✅ |
+| prisma | ^7.3.0 | ✅ | ✅ | ✅ | ✅ |
 | next-auth | ^4.24.13 | ✅ | ✅ | ✅ | ✅ |
 | tailwindcss | ^4 | ✅ | ✅ | ✅ | ✅ |
 
@@ -149,8 +149,8 @@
 
 ### 3. NextAuth.js v4
 - **안정성**: Production-ready stable 버전
-- **필수**: `@prisma/adapter` v2.11.1 (Prisma v7 호환)
-- **v5**: Beta 단계로 production 사용 권장하지 않음
+- **필수**: `@auth/prisma-adapter` v2.11.1 (Prisma v7 호환)
+- **v5**: Beta 단계로 production 사용 보류
 
 ### 4. Tailwind CSS v4
 - **변경사항**: PostCSS 설정 방식 변경
@@ -163,8 +163,8 @@
 ### dependencies
 ```json
 {
-  "@prisma/adapter-neon": "^5.23.0",
-  "@prisma/client": "^5.23.0",
+  "@auth/prisma-adapter": "^2.11.1",
+  "@prisma/client": "^7.3.0",
   "@auth/prisma-adapter": "^2.11.1",
   "next": "16.1.6",
   "next-auth": "^4.24.13",
@@ -183,7 +183,7 @@
   "eslint": "^9",
   "eslint-config-next": "16.1.6",
   "prettier": "^3.8.1",
-  "prisma": "^5.23.0",
+  "prisma": "^7.3.0",
   "tailwindcss": "^4",
   "typescript": "^5"
 }
