@@ -30,7 +30,7 @@ model Portfolio {
 
   projects    Project[]
   skills      Skill[]
- experiences Experience[]
+  experiences Experience[]
   education   Education[]
 
   @@map("portfolios")
@@ -124,6 +124,7 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String    @unique
+  isOwner       Boolean   @default(false)
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
