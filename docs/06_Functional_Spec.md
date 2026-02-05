@@ -1,4 +1,4 @@
-# Functional Spec (기능명세서) — Dev OS
+﻿# Functional Spec (기능명세서) — PoReSt
 버전: v1.0  
 상태: Draft (개발 착수용)  
 우선순위: Portfolio > Notes > Blog > Feedback  
@@ -298,3 +298,4 @@
 - PDF Export 방식(서버 렌더/클라이언트 렌더/외부 서비스)
 
 ---
+

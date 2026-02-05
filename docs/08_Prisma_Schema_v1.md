@@ -1,4 +1,4 @@
-// prisma/schema.prisma
+﻿// prisma/schema.prisma
 
 generator client {
   provider = "prisma-client-js"
@@ -557,3 +557,4 @@ model FeedbackItem {
   @@index([requestId, severity])
   @@map("feedback_items")
 }
+

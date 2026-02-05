@@ -1,4 +1,4 @@
-# PRD — Dev OS (Portfolio + Notes + Blog + Resume + Feedback)
+﻿# PRD — PoReSt (Portfolio + Notes + Blog + Resume + Feedback)
 버전: v1.0  
 상태: Draft (개발 착수용)  
 작성일: 2026-02-03  
@@ -177,3 +177,4 @@
 - pgvector 개요(예: Supabase 가이드): https://supabase.com/docs/guides/database/extensions/pgvector
 - 티스토리 Open API 종료 공지: https://notice.tistory.com/2664
 - 티스토리 Open API 종료 안내 문서: https://tistory.github.io/document-tistory-apis/
+

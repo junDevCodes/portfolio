@@ -1,4 +1,4 @@
-# Porest (Portfolio Resume Studio) - 기술 스택 명세서
+﻿# PoReSt (Portfolio Resume Studio) - 기술 스택 명세서
 
 > **버전**: v1.0  
 > **작성일**: 2026-02-04  
@@ -225,3 +225,4 @@ npm run dev
 
 **마지막 업데이트**: 2026-02-04  
 **다음 리뷰**: M0 완료 시 (Prisma/Auth.js 설치 후)
+

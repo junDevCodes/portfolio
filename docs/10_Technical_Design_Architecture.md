@@ -1,4 +1,4 @@
-# Technical Design & Architecture — Dev OS
+﻿# Technical Design & Architecture — PoReSt
 버전: v1.0
 목표: Public(포트폴리오) + Private(오너 대시보드: 포트폴리오 관리/이력서/노트/블로그/피드백) 단일 플랫폼을 “운영 가능한” 구조로 설계한다.
 우선순위: Portfolio > Notes > Blog > Feedback
@@ -251,3 +251,4 @@ v1 선택지 2개 중 하나로 고정(초기에 흔들리지 않게)
 - Neon + Prisma Guide: https://neon.com/docs/guides/prisma
 - Supabase pgvector Docs: https://supabase.com/docs/guides/database/extensions/pgvector
 - pgvector Indexing (HNSW/IVFFlat): https://github.com/pgvector/pgvector
+

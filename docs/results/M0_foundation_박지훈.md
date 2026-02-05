@@ -1,4 +1,4 @@
-# M0 Foundation 결과 — 박지훈 (Backend)
+﻿# M0 Foundation 결과 — 박지훈 (Backend)
 작성일: 2026-02-05
 
 ## 변경사항 요약
@@ -35,3 +35,4 @@
 ## 비고/리스크
 - 마이그레이션/seed는 `DATABASE_URL_UNPOOLED` 환경변수가 필요합니다.
 - `OWNER_EMAIL` 미설정 시 seed가 실패합니다.
+

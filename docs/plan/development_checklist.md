@@ -1,6 +1,6 @@
-﻿# Porest 개발 단계별 체크리스트
+﻿# PoReSt 개발 단계별 체크리스트
 
-> **프로젝트**: Porest — Public Portfolio + Private Dashboard  
+> **프로젝트**: PoReSt — Public Portfolio + Private Dashboard  
 > **우선순위**: Portfolio > Notes > Blog > Feedback  
 > **목표**: 각 마일스톤/도메인별로 빠짐없이 개발하고 검증한다
 
@@ -394,3 +394,4 @@
 
 **체크리스트 원칙**  
 > "완료는 배포 가능한 상태를 의미한다. 문서와 코드는 항상 동기화된다."
+

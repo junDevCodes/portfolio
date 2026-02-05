@@ -1,4 +1,4 @@
-﻿# Porest 팀원별 작업 할당표
+﻿# PoReSt 팀원별 작업 할당표
 
 ## M0 (1주) - Foundation
 
@@ -146,3 +146,4 @@
 **Backend ↔ Data**: 스키마/알고리즘 협의 (M3, M5)  
 **DevOps ↔ Backend**: DB 연결, 환경변수  
 **QA ↔ 전체**: 테스트 시나리오, 버그 리포트
+

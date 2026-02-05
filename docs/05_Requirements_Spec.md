@@ -1,4 +1,4 @@
-# Requirements Spec — Dev OS (Public Portfolio + Private Owner Dashboard)
+﻿# Requirements Spec — PoReSt (Public Portfolio + Private Owner Dashboard)
 버전: v1.0  
 상태: Draft (개발 착수용)  
 우선순위: Portfolio > Notes > Blog > Feedback  
@@ -163,3 +163,4 @@
 - Resume 원본 동기화: Experience 변경을 버전에 반영하는 방식(수동 sync 권장)
 
 ---
+

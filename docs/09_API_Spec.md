@@ -1,4 +1,4 @@
-# API Spec — Dev OS (Public Portfolio + Private Owner Dashboard)
+﻿# API Spec — PoReSt (Public Portfolio + Private Owner Dashboard)
 버전: v1.0
 스타일: REST (Next.js App Router Route Handlers)
 원칙: Public API(/api/public/*)와 Private API(/api/app/*)를 분리한다.
@@ -436,3 +436,4 @@ Response.data:
 - Lint/Feedback 결과는 Private 전용(공개 노출 금지)
 
 ---
+

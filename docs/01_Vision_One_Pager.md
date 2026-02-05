@@ -1,4 +1,4 @@
-# Vision 1pager — Dev OS (Portfolio + Notes + Blog + Resume)
+﻿# Vision 1pager — PoReSt (Portfolio + Notes + Blog + Resume)
 
 ## 1) 제품 비전 (한 문장)
 공개 포트폴리오는 가볍게 보여주고, 오너 전용 공간에서 포트폴리오/이력서/지식노트/블로그를 “한 데이터”로 관리·재사용·연결하는 개인 개발자 OS.
@@ -74,3 +74,4 @@
 - Next.js Dashboard 튜토리얼(인증 추가): https://nextjs.org/learn/dashboard-app/adding-authentication
 - pgvector 공식 프로젝트: https://github.com/pgvector/pgvector
 - pgvector 개요(예: Supabase 문서): https://supabase.com/docs/guides/database/extensions/pgvector
+

@@ -1,4 +1,4 @@
-# Data Model / ERD — Dev OS (Public Portfolio + Private Owner Dashboard)
+﻿# Data Model / ERD — PoReSt (Public Portfolio + Private Owner Dashboard)
 버전: v1.0  
 상태: Draft (개발 착수용)  
 핵심 원칙: Public(포트폴리오만) / Private(오너만) 완전 분리 + “원본(Experience/Note) → 조합/뷰(Resume/Graph)” 구조
@@ -313,3 +313,4 @@ User 1 ── N BlogPost ── 0..N BlogExport  (옵션)
   - ShareToken(entityType, entityId, token, expiresAt, scope) 추가
 
 ---
+

@@ -1,4 +1,4 @@
-# Dev OS Architecture (M0 Foundation)
+﻿# PoReSt Architecture (M0 Foundation)
 
 ## 1) One-line summary
 Single Next.js(App Router) app that serves **Public Portfolio** with ISR and protects **Private Owner Dashboard** with Auth.js + middleware, backed by PostgreSQL + Prisma.
@@ -96,4 +96,5 @@ Required (M0):
 - Split API namespaces: `/api/public/*` vs `/api/app/*`.
 - Protect private routes via middleware + server-side owner check.
 - JWT sessions for edge-safe auth validation.
+
 

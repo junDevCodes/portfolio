@@ -1,4 +1,4 @@
-# M0 Foundation 결과 — 김민준 (TL)
+﻿# M0 Foundation 결과 — 김민준 (TL)
 작성일: 2026-02-04
 
 ## 변경사항 요약
@@ -87,3 +87,4 @@
 - **환경변수 공유**: 템플릿/가이드 준비 완료, `AUTH_SECRET` 생성 및 Vercel 환경변수 반영 필요
 - **Owner 계정 부트스트랩**: `User.isOwner=true` seed 또는 `OWNER_EMAIL` 기준 합의
 - **실행 검증**: `npm run dev` 후 로그인/미들웨어 흐름 확인
+

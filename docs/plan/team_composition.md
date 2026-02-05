@@ -1,6 +1,6 @@
-﻿# Porest 포트폴리오 프로젝트 팀 구성
+﻿# PoReSt 포트폴리오 프로젝트 팀 구성
 
-> **프로젝트**: Porest — Public Portfolio + Private Dashboard (Notes/Blog/Resume/Feedback)  
+> **프로젝트**: PoReSt — Public Portfolio + Private Dashboard (Notes/Blog/Resume/Feedback)  
 > **기술 스택**: Next.js (App Router) + TypeScript + PostgreSQL + Prisma + Auth.js  
 > **배포**: Vercel + Neon/Prisma Postgres  
 > **우선순위**: Portfolio > Notes > Blog > Feedback
@@ -217,3 +217,4 @@ graph TD
 
 **팀 모토**  
 > "데이터는 한 번만 작성하고, 조합으로 재사용한다. 자동화는 제안까지만, 확정은 사용자가."
+

@@ -1,4 +1,4 @@
-# IA & Routing Map — Public Portfolio + Private Owner Dashboard
+﻿# IA & Routing Map — Public Portfolio + Private Owner Dashboard
 버전: v1.0  
 목적: 공개(포트폴리오)와 비공개(오너 대시보드)를 URL/레이아웃/권한 관점에서 “완전히 분리”하여 개발/운영 안정성을 확보한다.
 
@@ -176,3 +176,4 @@ app/
 - Export/외부 URL 등록은 Private Blog에서만 수행
 
 ---
+

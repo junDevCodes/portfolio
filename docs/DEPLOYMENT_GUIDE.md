@@ -1,8 +1,8 @@
-# M0 Foundation - 배포 파이프라인 구성 가이드
+﻿# M0 Foundation - 배포 파이프라인 구성 가이드
 
 ## 📋 개요
 
-이 문서는 Portfolio v2 프로젝트의 M0 Foundation 단계에서 구성한 배포 파이프라인과 데이터베이스 설정 가이드입니다.
+이 문서는 PoReSt 프로젝트의 M0 Foundation 단계에서 구성한 배포 파이프라인과 데이터베이스 설정 가이드입니다.
 
 ---
 
@@ -375,3 +375,4 @@ NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 **작성일**: 2026-02-04  
 **작성자**: 정하은 (DevOps Engineer)  
 **버전**: 1.0
+

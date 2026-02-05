@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Portfolio v2
+﻿# 🚀 Quick Start Guide - PoReSt
 
 **For Team Members**: 5분 안에 로컬 개발 환경 구축하기
 
@@ -206,3 +206,4 @@ lsof -ti:3000 | xargs kill
 ---
 
 **Last Updated**: 2026-02-04
+

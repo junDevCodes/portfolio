@@ -1,4 +1,4 @@
-# User Flow + Use Cases — Public Portfolio + Private Owner Dashboard
+﻿# User Flow + Use Cases — Public Portfolio + Private Owner Dashboard
 버전: v1.0  
 목적: “공개(포트폴리오)”와 “비공개(오너 전용)”을 분리한 상태에서, 핵심 작업(포트폴리오→노트→블로그→피드백)의 사용자 흐름과 예외/결정 포인트를 개발 가능한 수준으로 고정한다.
 
@@ -254,3 +254,4 @@
 - 외부 블로그: MVP는 Export + URL 상태관리(Connector는 확장 설계)
 
 ---
+

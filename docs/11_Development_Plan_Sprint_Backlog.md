@@ -1,4 +1,4 @@
-# Development Plan & Sprint Backlog — Dev OS
+﻿# Development Plan & Sprint Backlog — PoReSt
 버전: v1.0
 목표: “공개 포트폴리오”는 빠르고 안정적으로 배포하고, “오너 전용 대시보드(/app)”는 인증 기반으로 안전하게 운영한다.
 우선순위: Portfolio > Notes > Blog > Feedback
@@ -224,3 +224,4 @@
   - 대응: 자동=후보만, 확정은 오너만 + Reject(옵션)
 
 ---
+
