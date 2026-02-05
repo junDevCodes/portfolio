@@ -6,7 +6,15 @@ const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
 };
 
-const adapter = new PrismaNeon(new Pool({ connectionString: process.env.DATABASE_URL }) as any);
+// Validate DATABASE_URL
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error(
+    "DATABASE_URL environment variable is not set. Please check your Vercel environment variables."
+  );
+}
+
+const adapter = new PrismaNeon(new Pool({ connectionString: databaseUrl }) as any);
 
 export const prisma =
   globalForPrisma.prisma ??
