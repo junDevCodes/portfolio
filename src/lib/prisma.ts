@@ -1,14 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { Pool } from "@neondatabase/serverless";
+import { neonConfig } from "@neondatabase/serverless";
+import ws from "ws";
 
 const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
 };
 
 // DATABASE_URL 확인
-const primaryUrl = process.env.DATABASE_URL_UNPOOLED ?? "";
-const fallbackUrl = process.env.DATABASE_URL ?? "";
+const primaryUrl = process.env.DATABASE_URL ?? "";
+const fallbackUrl = process.env.DATABASE_URL_UNPOOLED ?? "";
 const databaseUrl = primaryUrl || fallbackUrl;
 const shouldDebug = process.env.NEXTAUTH_DEBUG === "true";
 
@@ -18,7 +19,7 @@ if (shouldDebug) {
   } else {
     try {
       const host = new URL(databaseUrl).host;
-      const source = primaryUrl ? "DATABASE_URL_UNPOOLED" : "DATABASE_URL";
+      const source = primaryUrl ? "DATABASE_URL" : "DATABASE_URL_UNPOOLED";
       console.log(`DATABASE_URL 상태: 설정됨 (${source}, ${host})`);
     } catch (error) {
       console.log("DATABASE_URL 상태: 파싱 실패");
@@ -32,7 +33,11 @@ if (!databaseUrl) {
   );
 }
 
-const adapter = new PrismaNeon(new Pool({ connectionString: databaseUrl }) as any);
+if (typeof WebSocket === "undefined") {
+  neonConfig.webSocketConstructor = ws;
+}
+
+const adapter = new PrismaNeon({ connectionString: databaseUrl });
 
 export const prisma =
   globalForPrisma.prisma ??
