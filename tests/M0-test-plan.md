@@ -69,6 +69,15 @@
 - Preview/Production 모두 접근 가능  
 - Public 홈 렌더링 정상  
 
+## 실행 결과 (2026-02-06)
+- TC-M0-1 통과 (비인증 `/app` → `/auth/signin`, `next` 파라미터 확인)
+- TC-M0-2 통과 (오너 로그인 후 `/app` 접근 확인)
+- TC-M0-3 통과 (401 + `{ "error": "인증이 필요합니다." }`)
+- TC-M0-4 통과 (403 + `{ "error": "오너 권한이 필요합니다." }`)
+- TC-M0-5 통과 (HttpOnly, Secure(Production), SameSite=Lax 확인)
+- TC-M0-6 통과 (Preview/Production `/` 정상 렌더)
+- 운영 설정 확인: `NEXTAUTH_DEBUG` 비활성화
+
 ## 결과 기록
-- 실행 결과는 `docs/results/M0_foundation_김민준.md`에 QA 섹션으로 요약 반영
+- 실행 결과는 본 문서에 기록 (docs/는 로컬 보관)
 - 실패 케이스는 GitHub Issue로 등록
