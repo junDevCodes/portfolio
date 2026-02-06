@@ -254,14 +254,16 @@ git push origin test/deployment
 ```prisma
 // PostgreSQL 데이터소스 설정
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL_UNPOOLED")  // ← Migration용 직접 연결
+  provider = "postgresql"
 }
 
 // 포트폴리오 모델 (Portfolio, Project, Skill, Experience, Education)
 // + Auth.js 인증 모델 (User, Account, Session, VerificationToken)
 ```
+
+> Prisma 7에서는 schema에 연결 URL을 두지 않습니다.
+> 마이그레이션은 `prisma.config.ts`에서 `DATABASE_URL_UNPOOLED`로 관리하고,
+> 런타임 연결은 Prisma Client 초기화 시 어댑터에 `DATABASE_URL`을 전달합니다.
 
 **설계 특징**:
 - Cascade 삭제로 데이터 무결성 보장
@@ -596,4 +598,6 @@ M0 Foundation 단계의 모든 설정 파일과 문서화를 완료했습니다.
 - 문제 해결 가이드 포함
 
 실제 DB 및 Vercel 프로젝트 생성 후 첫 배포 테스트를 진행하면 M0 단계가 완전히 완료됩니다. 팀원들과 함께 안정적인 배포 파이프라인을 활용하여 프로젝트를 진행할 수 있을 것으로 기대합니다!
+
+
 

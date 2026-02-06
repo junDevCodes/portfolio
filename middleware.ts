@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from "next/server";
+﻿import { type NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 const SIGN_IN_PATH = "/auth/signin";
@@ -46,3 +46,4 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/app/:path*", "/api/app/:path*"],
 };
+

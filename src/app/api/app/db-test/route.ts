@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireOwner } from "@/lib/auth-guard";
 
@@ -49,3 +49,4 @@ export async function GET() {
     await prisma.$disconnect();
   }
 }
+
